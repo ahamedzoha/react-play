@@ -1,8 +1,51 @@
+import { About, Home, Contact } from "./Pages"
+import { Routes, Route, Link, useLocation } from "react-router-dom"
+
 const App = () => {
+  const location = useLocation()
+
+  const links = [
+    {
+      to: "/",
+      name: "Home",
+      active: location.pathname === "/",
+    },
+    {
+      to: "/about",
+      name: "About",
+      active: location.pathname === "/about",
+    },
+    {
+      to: "/contact",
+      name: "Contact",
+      active: location.pathname === "/contact",
+    },
+  ]
   return (
-    <div className="">
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-    </div>
+    <>
+      <nav className="bg-slate-700 px-2 py-4 text-white text-lg">
+        <ul className="flex  space-x-3">
+          {links.map((link) => (
+            <li key={link.to}>
+              <Link
+                to={link.to}
+                className={`py-2 px-3 rounded-lg ${
+                  link.active ? "bg-slate-600" : "bg-slate-700"
+                }`}
+              >
+                {link.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+    </>
   )
 }
 
