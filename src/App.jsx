@@ -16,6 +16,12 @@ const App = () => {
         </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>
+
+      {/* <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={toasterOptions}
+      /> */}
     </>
   )
 }
