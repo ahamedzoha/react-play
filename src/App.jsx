@@ -1,5 +1,13 @@
 import { About, Home, Contact, Error404 } from "./Pages"
-import { Routes, Route, Link, useLocation } from "react-router-dom"
+import {
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  Navigate,
+  Outlet,
+} from "react-router-dom"
+import { useAuth } from "./Contexts/AuthContext"
 
 const App = () => {
   const location = useLocation()
@@ -42,12 +50,24 @@ const App = () => {
 
       <Routes>
         <Route index path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Route>
         <Route path="*" element={<Error404 />} />
       </Routes>
     </>
   )
+}
+
+const ProtectedRoutes = ({ children, redirectPath }) => {
+  const { user } = useAuth()
+
+  if (user) {
+    return children ?? <Outlet />
+  } else {
+    return <Navigate to={redirectPath ?? "/login"} replace />
+  }
 }
 
 export default App
