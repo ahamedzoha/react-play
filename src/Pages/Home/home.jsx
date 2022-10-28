@@ -5,8 +5,8 @@ import { fetchUsers } from "../../API/fetch20user"
 const Home = () => {
   const { data, isLoading, isSuccess, isError, error, refetch } = useQuery(
     ["users"],
-    { staleTime: 6000 },
-    fetchUsers
+    fetchUsers,
+    { staleTime: 1000 * 60 * 60 }
   )
 
   return (

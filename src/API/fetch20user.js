@@ -13,7 +13,7 @@ export const fetchUsers = async () => {
     peopleData.push(flattened)
   }
 
-  console.log(`Fetch Completed - Users: ${response.data}`)
+  console.log(`Fetch Completed - Users: ${users.results}`)
   console.log(peopleData)
 
   return peopleData
