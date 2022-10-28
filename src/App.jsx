@@ -1,4 +1,4 @@
-import { About, Home, Contact } from "./Pages"
+import { About, Home, Contact, Error404 } from "./Pages"
 import { Routes, Route, Link, useLocation } from "react-router-dom"
 
 const App = () => {
@@ -41,9 +41,10 @@ const App = () => {
       </nav>
 
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route index path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
     </>
   )
