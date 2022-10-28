@@ -20,12 +20,12 @@ export const AuthProvider = ({ children }) => {
         setUser(res.data)
         navigate("/", { replace: true })
         localStorage.setItem("user", JSON.stringify(res.data))
-        toast.success("Login Successful")
+        // toast.success("Login Successful")
         setIsLoading(false)
       })
       .catch((err) => {
         console.log(err)
-        toast.error("Login Error")
+        // toast.error("Login Error")
         setIsLoading(false)
       })
   }
